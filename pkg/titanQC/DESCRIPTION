@@ -1,0 +1,15 @@
+Package: titanQC
+Type: Package
+Title: QC Procedures for the Titan platform
+Version: 0.0-6
+Date: 2010-12-05
+Author: Suzy Van Sanden, Tobias Verbeke
+Maintainer: Tobias Verbeke <tobias.verbeke@openanalytics.eu>
+Description: QC Procedures for the Titan platform
+Imports: Biobase
+Depends: gsubfn, Biobase, alphahull, gplots, gdata, affyPLM
+License: GPL-3
+Collate: 'boxPlate.R' 'densityPlate.R' 'displayPlate.R'
+    'geneFiltering.R' 'getPosition.R' 'MAPlate.R' 'plmPlate.R'
+    'statisticPlate.R'
+Packaged: 2011-01-17 22:59:44 UTC; tobias

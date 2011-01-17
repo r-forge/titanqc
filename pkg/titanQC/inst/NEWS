@@ -1,0 +1,13 @@
+0.0-6
+    o add plmPlate
+0.0-5
+    o fix displayPlate (stat)
+0.0-4
+    o another camelCap
+0.0-3
+    o fix remaining camelCap in getCelFilePosition
+0.0-2
+    o adapt all ExpressionSet column names to camelCaps
+    o fix namespace issues 
+0.0-1
+    o first public release
