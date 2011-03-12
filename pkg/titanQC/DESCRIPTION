@@ -1,9 +1,9 @@
 Package: titanQC
 Type: Package
 Title: QC Procedures for the Titan platform
-Version: 0.0-6
-Date: 2010-12-05
-Author: Suzy Van Sanden, Willem Talloen, Hinrich Goehlmann, Tobias Verbeke
+Version: 0.0-7
+Date: 2011-03-12
+Author: Stijn Dickens, Hinrich Goehlmann, Willem Talloen, Suzy Van Sanden, Tobias Verbeke
 Maintainer: Tobias Verbeke <tobias.verbeke@openanalytics.eu>
 Description: QC Procedures for the Titan platform
 Imports: Biobase
