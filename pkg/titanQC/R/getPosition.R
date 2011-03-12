@@ -5,17 +5,17 @@
 getPosition <- function(fileName){
   
   celFileCon <- file(fileName, "rb")
-  celFileHeader <- readBin(celFileCon, n = 6000, what = "character")
+  tmp <- readBin(celFileCon, n = 12000, what = "raw")
+  # ascii only, no control characters, remove spaces
+  celFileHeader <- rawToChar(tmp[!(tmp %in% as.character(as.hexmode(c(0:32, 127)))) & tmp %in% as.character(as.hexmode(0:128))])
   close(celFileCon)
-
-  celFileHeaderPasted <- paste(celFileHeader, collapse = "")
   
-  barcodeId <-strapply(celFileHeaderPasted, 
-      "affymetrix-plate-barcode,(.+)\\ntext", # TODO 22 characters ?
+  barcodeId <-strapply(celFileHeader, 
+      "affymetrix-plate-barcode,(.{22})text",
       simplify = c)
   
-  posData <- strapply(celFileHeaderPasted, 
-      "affymetrix-plate-peg-wellposition\\006(...)\\n",
+  posData <- strapply(celFileHeader, 
+      "affymetrix-plate-peg-wellposition(...)text",
       simplify = c)
   rowPos <- substr(posData, start = 1, stop = 1)
   colPos <- as.numeric(substr(posData, start = 2, stop = nchar(posData)))
@@ -41,20 +41,22 @@ getCelFilePosition <- function(celFiles = NULL){
   celFileList <- vector(mode = "list", length = length(celFiles))
   for (iFile in seq_along(celFiles)){
     celFileCon <- file(celFiles[iFile], "rb")
-    celFileList[[iFile]] <- paste(readBin(celFileCon, n = 6000, what = "character"), collapse = "")
+    tmp <- readBin(celFileCon, n = 12000, what = "raw")
+    tmp <- rawToChar(tmp[!(tmp %in% as.character(as.hexmode(c(0:32, 127)))) & tmp %in% as.character(as.hexmode(0:128))])
+    celFileList[[iFile]] <- tmp
     close(celFileCon)
   }
   
   barcodeIdFunction <- function(x){
     barcodeId <- strapply(x, 
-        "affymetrix-plate-barcode,(.{22})\\ntext", # TODO 22 characters ?
+        "affymetrix-plate-barcode,(.{22})text", # ID 22 characters (confirmed by Affy)
         simplify = c)
     return(barcodeId)
   }
   
   rowPosFunction <- function(x){
     posData <- strapply(x, 
-        "affymetrix-plate-peg-wellposition\\006(...)\\n",
+        "affymetrix-plate-peg-wellposition(...)text",
         simplify = c)
     rowPos <- substr(posData, start = 1, stop = 1)
     return(rowPos)
@@ -62,7 +64,7 @@ getCelFilePosition <- function(celFiles = NULL){
   
   colPosFunction <- function(x){
     posData <- strapply(x, 
-        "affymetrix-plate-peg-wellposition\\006(...)\\n",
+        "affymetrix-plate-peg-wellposition(...)text",
         simplify = c)
     colPos <- as.numeric(substr(posData, start = 2, stop = nchar(posData)))  
     return(colPos)
@@ -84,7 +86,7 @@ getCelFilePosition <- function(celFiles = NULL){
       titanColumn = colPos, row.names = basename(celFiles), stringsAsFactors = FALSE)
 
   plateNo <- cbind(titanPlateBarcode = unique(posDf$titanPlateBarcode), titanPlateNo = c(1:length(unique(posDf$titanPlateBarcode)))) 
-  posDf <- merge(posDf,plateNo,by="titanPlateBarcode")
+  posDf <- merge(posDf, plateNo, by = "titanPlateBarcode")
   posDf$titanPlateNo <- as.character(posDf$titanPlateNo)
 		  
   return(posDf)

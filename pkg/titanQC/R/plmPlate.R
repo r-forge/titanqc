@@ -81,9 +81,9 @@ plmPlate <- function(x, celFilePositions, type = "resids", use.log=TRUE,
   }
   
   ### create list of residual matrices
-  residsMatrixList <- vector(mode = "list", length = nrow(celFilePositionsDf))
+  residsMatrixList <- vector(mode = "list", length = nrow(celFilePositions))
   
-  for (iSample in seq(from = 1, to = nrow(celFilePositionsDf))){
+  for (iSample in seq(from = 1, to = nrow(celFilePositions))){
     
     residsmatrix <- matrix(nrow=rows, ncol=cols)
     if (standardize){
@@ -124,19 +124,19 @@ plmPlate <- function(x, celFilePositions, type = "resids", use.log=TRUE,
   ### actual plotting
   
   # order position information
-  celFilePositionsDf$titanRowNumber <- as.numeric(factor(celFilePositionsDf$titanRow, 
+  celFilePositions$titanRowNumber <- as.numeric(factor(celFilePositions$titanRow, 
           levels = LETTERS[1:8]))
   
-  celFilePositionsDf <- celFilePositionsDf[order(celFilePositionsDf$titanColumn, 
-          celFilePositionsDf$titanRowNumber), ]
+  celFilePositions <- celFilePositions[order(celFilePositions$titanColumn, 
+          celFilePositions$titanRowNumber), ]
   
   # reorder list of residual matrices before plotting
-  celFilePositionsDf$sampleNameCEL <- paste(celFilePositionsDf$sampleName, sampleNameAffix, sep = "")
-  residsMatrixList <- residsMatrixList[celFilePositionsDf$sampleNameCEL]
+  celFilePositions$sampleNameCEL <- paste(celFilePositions$sampleName, sampleNameAffix, sep = "")
+  residsMatrixList <- residsMatrixList[celFilePositions$sampleNameCEL]
   
   # prepare plot layout (as not all cells on the grid will be taken)
   presenceMatrix <- matrix(0, nrow = 8, ncol = 12)
-  interactionVariable <- interaction(celFilePositionsDf$titanRowNumber, celFilePositionsDf$titanColumn)
+  interactionVariable <- interaction(celFilePositions$titanRowNumber, celFilePositions$titanColumn)
   for (iRow in 1:8){
     for (iCol in 1:12){
       rowPos <- which(paste(iRow, iCol, sep = ".") == interactionVariable)

@@ -1,3 +1,7 @@
+0.0-7
+    o improved getPosition and getCelFilePosition
+    o fix plmPlate bug
+    o include first draft of vignette
 0.0-6
     o add plmPlate
 0.0-5
