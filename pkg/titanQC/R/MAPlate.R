@@ -1,5 +1,4 @@
 #' Patched version of the plot.ahull function from the alphahull package
-#' This version TODO
 #' @param x x
 #' @param add add
 #' @param do.shape do.shape 
@@ -11,6 +10,7 @@
 #' @param ylim ylim
 #' @param lwd lwd
 #' @param ... further arguments
+#' @seealso alphahull plot.ahull
 #' @return plot is displayed on the current device
 #' @export
 plot.ahullS <- function (x, add = FALSE, do.shape = FALSE, wlines = c("none", 
@@ -81,19 +81,20 @@ plot.ahullS <- function (x, add = FALSE, do.shape = FALSE, wlines = c("none",
 }
 
 
-#' Generate a MA plots for all individual wells on the plate
+#' Generate MA plots for all individual wells on a GeneTitan plate
 #' @param eset ExpressionSet object as produced in the 'preprocessing' function 
 #' @param filePrefix prefix that will be used to generate the output files; for plate <i>, the default
 #' name will be <filePrefix>Plate<i>.png; the default file prefix is "MAPlate" 
-#' @param alpha alpha value for the alphahull function (numeric of length one); when NULL no contours are
-#'   plotted
+#' @param alpha alpha value for the alphahull function (numeric of length one); when NULL (default) 
+#' no contours are plotted
 #' @param gradient if TRUE a smoothscatter plot is used to depict the raw data points; if FALSE the points
 #'    are plotted as is; defaults to FALSE
 #' @param title name of the variable in the pData of the eset ExpresionSet that can be used to provide titles
 #' on the individual well plots; if NULL no titles are plotted for the individual wells
 #' @note the color codes correspond to the sampleColor column of the pData of the ExpressionSet passed to argument
 #' 'eset'; if no sampleColor column is present, the data for all samples will be plotted in 'blue'
-#' @return the function generates as many png files as there are plates contained in the ExpressionSet object 'eset'
+#' @return no return value; the function generates as many png files as there are plates contained in the ExpressionSet object 'eset'
+#' @references TODO
 #' @export
 MAPlate <- function(eset, filePrefix = "MAPlate", alpha = NULL, gradient = FALSE, title = NULL) {
   

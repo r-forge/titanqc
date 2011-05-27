@@ -1,9 +1,9 @@
 \name{getCelFilePosition}
 \alias{getCelFilePosition}
-\title{Get the Position of a Set of CEL Files on a Titan Plate...}
+\title{Get the position of a set of CEL files on a GeneTitan plate...}
 \usage{getCelFilePosition(celFiles)
 }
-\description{Get the Position of a Set of CEL Files on a Titan Plate}
+\description{Get the position of a set of CEL files on a GeneTitan plate}
 \value{data frame with columns titanPlateBarcode, titanPlateNo, titanRow, titanColumn}
 \note{It is assumed that all CEL file names of a given plate are contiguous numbers and either
 all greater than or all smaller than the CEL file names (numbers) of another plate; this assumption

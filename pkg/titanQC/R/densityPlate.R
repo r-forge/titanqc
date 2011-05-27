@@ -1,4 +1,4 @@
-#' Generate for each well on the plate a density plot of the expression values
+#' Generate for each well on the plate a density plot of the normalized probeset values
 #' 
 #' The grey densities displayed on each well plot
 #' correspond to the individual densities of all other wells; the colored density
@@ -11,6 +11,7 @@
 #' on the individual well plots; if NULL no titles are plotted for the individual wells
 #' @note the color codes correspond to the sampleColor column of the pData of the ExpressionSet passed to argument
 #' 'eset'; if no sampleColor column is present, the density for a given sample will be plotted in 'blue'  
+#' @return no return value; a graph is drawn to the current device
 #' @export
 densityPlate <- function(eset, filePrefix = "densityPlate", title = NULL) {
   

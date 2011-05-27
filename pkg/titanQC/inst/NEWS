@@ -1,3 +1,5 @@
+0.0-8
+    o the titanPlateNo column in the output of getCelFiles is no longer a as character vector, but a numeric vector
 0.0-7
     o improved getPosition and getCelFilePosition
     o fix plmPlate bug

@@ -4,8 +4,8 @@
 \usage{plot.ahullS(x, add=FALSE, do.shape=FALSE, wlines=c("none", "both", "del", "vor"),
     wpoints=TRUE, number=FALSE, col, xlim, ylim, lwd, ...)
 }
-\description{Patched version of the plot.ahull function from the alphahull package
-This version TODO}
+\description{Patched version of the plot.ahull function from the alphahull package}
+\seealso{alphahull plot.ahull}
 \value{plot is displayed on the current device}
 \arguments{\item{x}{x}
 \item{add}{add}

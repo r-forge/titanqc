@@ -1,7 +1,7 @@
-#' Draw a Summary Display for a Titan Plate
+#' Draw a summary display for a GeneTitan plate
 #' @param eset ExpressionSet object with additional plate number and position information
-#'  in the pData; for the Incubator plates the column names of the pData need to be
-#'  incubatorPlateNo,  incubatorColumn, incubatorRow; for Titan plates the column names of the
+#'  in the pData; for the Incubator plates (cf. note)  the column names of the pData need to be
+#'  incubatorPlateNo,  incubatorColumn, incubatorRow; for GeneTitan plates the column names of the
 #'  pData need to be titanPlateNo,  titanColumn, titanRow
 #' @param statistic summary statistic or information to be displayed for a well on the plate;
 #' can be either a name of a pData variable or a vector of values (one for each well) respecting 
@@ -30,8 +30,10 @@
 #' if 'white' the background color of the cells is 'white'; alternatively the name of a pData variable
 #' can be passed and will be used to set the colors of the cells; for any color scheme all missing 
 #' values are set to 'black' 
-#' @param filePrefix prefix used for all pdf files; one pdf file is generated for each plate
-#' @return one pdf file is generated for each plate
+#' @param filePrefix prefix used for all pdf files; one pdf file is generated for each plate; defaults to "displayPlate"
+#' @note If the profiled samples originate from an in vitro experiment, the information of the cell culture plates (Incubator plates) 
+#' can be added to the pData of the ExpressionSet object 
+#' @return no return value; one pdf file is generated for each plate
 #' @import Biobase
 #' @export
 displayPlate <- function(eset, 
@@ -45,7 +47,7 @@ displayPlate <- function(eset,
     textsize = 0.7,
     textcol = "black",
     color = "heat", # redgreen, random, white, or variable from pData
-    filePrefix = "display"
+    filePrefix = "displayPlate"
 ){
   
   # if the variable is the expression of a gene, it is attached to the pData

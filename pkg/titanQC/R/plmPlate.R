@@ -1,25 +1,27 @@
-#' Plot affyPLM QC Images on a Grid Respecting the Plate Layout
+#' Plot affyPLM QC images on a grid respecting the plate layout
 #' 
 #' @param x object of class 'PLMset' as produced by 'fitPLM' of the 'affyPLM' package
-#' @param celFilePositions dataframe as produced by getCelFilePosition; 
-#'   providing all necessary information on location on the plate of 
+#' @param celFilePositions dataframe as produced by getCelFilePosition; this data
+#'   frame provides all necessary information on location on the plate of 
 #'   the samples
 #' @param type type of residuals to plot; currently only type 'resids'
 #'   is supported
 #' @param use.log logical; defaults to \code{TRUE}
 #' @param standardize logical; see \code{\link[affyPLM]{PLMset-class}}
-#' @param col color palette to use for the coloring of residuals
+#' @param col color palette to use for the coloring of residuals; if NULL (default)
+#' the coloring of the affyPLM package is used (pseudoPalette)
 #' @param addSampleName add the sample names on top of each single
 #'   well image for the plate; defaults to FALSE
 #' @param sampleNameAffix affix used to comply with a legacy application
 #'   where '.CEL' is added to each sample name, defaults to '' in which
 #'   case sample names are expected to be the CEL file names (without the
 #'   .CEL extension)
-#' @return no return value; an graph is drawn to the current device
+#' @return no return value; a graph is drawn to the current device
 #' @seealso \code{\link[affyPLM]{PLMset-class}}
 #' @author Code from the image methods of the affyPLM package by Ben Bolstad, adapted
 #'   to titan QC purposes by Tobias Verbeke
 #' @note currently only type 'resids' from the affyPLM package is supported
+#' @references TODO
 #' @import affyPLM
 #' @export
 plmPlate <- function(x, celFilePositions, type = "resids", use.log=TRUE,

@@ -1,6 +1,11 @@
-#' Get the Position on the Plate for One Single CEL File
+#' Get the position on the plate for one single CEL File
 #' @param fileName path to CEL file
-#' @return data frame with columns titanPlateBarcode, titanRow, titanColumn
+#' @return data frame with columns 
+#' \item{titanPlateBarcode}{character vector with the plate barcodes}
+#' \item{sampleName}{character vector of sample names, concretely speaking the name of the CEL file without the .CEL extension}
+#' \item{titanRow}{character vector indicating the row on the plate, from "A" to "H"}
+#' \item{titanColumn}{numeric vector indicating the column on the plate, an integer between 1 and 12}
+#' \item{titanPlateNo}{character vector with integer numbers "1" up to the number of plates}
 #' @export
 getPosition <- function(fileName){
   
@@ -24,7 +29,7 @@ getPosition <- function(fileName){
   return(posDf)
 }
 
-#' Get the Position of a Set of CEL Files on a Titan Plate
+#' Get the position of a set of CEL files on a GeneTitan plate
 #' @param celFiles character vector of the paths of the CEL files for which the position on the
 #'  plate needs to be identified
 #' @return  data frame with columns titanPlateBarcode, titanPlateNo, titanRow, titanColumn
@@ -87,7 +92,6 @@ getCelFilePosition <- function(celFiles = NULL){
 
   plateNo <- cbind(titanPlateBarcode = unique(posDf$titanPlateBarcode), titanPlateNo = c(1:length(unique(posDf$titanPlateBarcode)))) 
   posDf <- merge(posDf, plateNo, by = "titanPlateBarcode")
-  posDf$titanPlateNo <- as.character(posDf$titanPlateNo)
 		  
   return(posDf)
 }
