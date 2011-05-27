@@ -17,7 +17,7 @@
 #'   .CEL extension)
 #' @return no return value; an graph is drawn to the current device
 #' @seealso \code{\link[affyPLM]{PLMset-class}}
-#' @author Code from the image methods of the affyPLM package by Ben Bolker, adapted
+#' @author Code from the image methods of the affyPLM package by Ben Bolstad, adapted
 #'   to titan QC purposes by Tobias Verbeke
 #' @note currently only type 'resids' from the affyPLM package is supported
 #' @import affyPLM
